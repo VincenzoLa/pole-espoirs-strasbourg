@@ -80,7 +80,7 @@ header h1{
   line-height:1.15;
 }
 
-/* Nav tabs (Séances / Convocations) */
+/* Nav tabs (Séances / Infos) */
 nav.toplevel{
   display:flex;
   gap:8px;
@@ -281,33 +281,164 @@ main{padding:16px 14px 8px;max-width:520px;margin:0 auto;}
   padding:40px 20px;
 }
 
-/* Convocations */
-.convoc{
+/* Infos generales */
+.info-card{
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:12px;
+  padding:14px 15px;
+  margin-bottom:10px;
+}
+.info-card.pinned{
+  border-color:var(--orange);
+  background:linear-gradient(0deg, var(--card), var(--card)), var(--orange-2);
+  border-width:1.5px;
+}
+.info-top{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  margin-bottom:5px;
+}
+.info-pin{
+  display:inline-flex;
+  align-items:center;
+  gap:4px;
+  font-size:10.5px;
+  font-weight:700;
+  letter-spacing:0.03em;
+  text-transform:uppercase;
+  color:var(--orange);
+  background:var(--orange-2);
+  padding:3px 8px;
+  border-radius:6px;
+}
+.info-date{
+  font-size:12px;
+  color:var(--text-mute);
+}
+.info-titre{
+  font-size:15px;
+  font-weight:600;
+  color:var(--text);
+  margin:2px 0 4px;
+}
+.info-texte{
+  font-size:13.5px;
+  color:var(--text-mute);
+  line-height:1.5;
+  white-space:pre-line;
+}
+.info-lien{
+  display:inline-block;
+  margin-top:8px;
+  font-size:13px;
+  font-weight:600;
+  color:var(--marine-2);
+  text-decoration:none;
+  border-bottom:1px solid var(--marine-2);
+}
+
+/* Calendrier */
+.group-toggle{
+  display:flex;
+  gap:8px;
+  margin:4px 0 14px;
+}
+.group-btn{
+  flex:1;
+  border:1px solid var(--line);
+  background:var(--card);
+  color:var(--text-mute);
+  font-weight:600;
+  font-size:13.5px;
+  padding:10px;
+  border-radius:10px;
+}
+.group-btn.active{
+  background:var(--marine);
+  border-color:var(--marine);
+  color:#fff;
+}
+.calendrier-legend{
+  display:flex;
+  flex-wrap:wrap;
+  gap:6px 12px;
+  margin-bottom:16px;
+  padding:10px 12px;
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:10px;
+}
+.legend-item{
+  display:flex;
+  align-items:center;
+  gap:5px;
+  font-size:11.5px;
+  color:var(--text-mute);
+}
+.legend-dot{
+  width:9px;height:9px;border-radius:50%;flex:0 0 auto;
+}
+.cal-month{
+  font-family:'Oswald',sans-serif;
+  font-size:13px;
+  font-weight:600;
+  text-transform:uppercase;
+  letter-spacing:0.04em;
+  color:var(--marine-2);
+  margin:20px 2px 8px;
+}
+.cal-month:first-child{margin-top:0;}
+.cal-event{
   display:flex;
   align-items:center;
   gap:12px;
   background:var(--card);
   border:1px solid var(--line);
-  border-radius:12px;
-  padding:13px 14px;
-  margin-bottom:10px;
-  text-decoration:none;
-  color:var(--text);
+  border-left:4px solid var(--line);
+  border-radius:10px;
+  padding:12px 14px;
+  margin-bottom:8px;
 }
-.convoc .ic{
-  flex:0 0 36px;
-  height:36px;
-  border-radius:8px;
-  background:var(--orange-2);
-  color:var(--orange);
-  display:flex;align-items:center;justify-content:center;
-  font-weight:700;
-  font-size:13px;
+.cal-event.type-labelA{border-left-color:#1d5fa5;}
+.cal-event.type-excellence{border-left-color:#3b8f57;}
+.cal-event.type-superexc{border-left-color:#c23b74;}
+.cal-event.type-champ{border-left-color:#c23b3b;}
+.cal-event.type-stage{border-left-color:#7a5cb0;}
+.cal-date{
+  flex:0 0 50px;
+  text-align:center;
+}
+.cal-date .d{
   font-family:'Oswald',sans-serif;
+  font-size:18px;
+  font-weight:600;
+  color:var(--marine);
+  line-height:1;
 }
-.convoc .meta .t{font-size:14px;font-weight:600;}
-.convoc .meta .s{font-size:12px;color:var(--text-mute);margin-top:1px;}
-.convoc .go{margin-left:auto;color:var(--text-mute);font-size:16px;}
+.cal-date .m{
+  font-size:10.5px;
+  color:var(--text-mute);
+  text-transform:uppercase;
+  margin-top:2px;
+}
+.cal-info{flex:1;min-width:0;}
+.cal-nom{
+  font-size:14.5px;
+  font-weight:600;
+  color:var(--text);
+  display:flex;
+  align-items:center;
+  gap:6px;
+  flex-wrap:wrap;
+}
+.cal-star{color:var(--orange);font-size:13px;}
+.cal-type{
+  font-size:11.5px;
+  color:var(--text-mute);
+  margin-top:2px;
+}
 
 footer{
   text-align:center;
@@ -326,7 +457,8 @@ footer{
 
 <nav class="toplevel">
   <button class="active" data-view="seances">Séances</button>
-  <button data-view="convoc">Convocations</button>
+  <button data-view="calendrier">Calendrier</button>
+  <button data-view="infos">Infos</button>
 </nav>
 
 <main>
@@ -337,8 +469,17 @@ footer{
     <div id="sessionList"></div>
   </section>
 
-  <section id="view-convoc" style="display:none;">
-    <div id="convocList"></div>
+  <section id="view-calendrier" style="display:none;">
+    <div class="group-toggle" id="groupToggle">
+      <button class="group-btn active" data-group="cadets">Cadets</button>
+      <button class="group-btn" data-group="juniors">Juniors</button>
+    </div>
+    <div class="calendrier-legend" id="calLegend"></div>
+    <div id="calendrierList"></div>
+  </section>
+
+  <section id="view-infos" style="display:none;">
+    <div id="infosList"></div>
   </section>
 
 </main>
@@ -399,10 +540,78 @@ const SEMAINES = [
   }
 ];
 
-const CONVOCATIONS = [
+const INFOS = [
   // Exemple — décommenter et adapter :
-  // { titre: "Tournoi de Ceyrat", date: "13 septembre 2026", fichier: "convocations/ceyrat.pdf" }
+  // { titre: "Intervention prevention harcelement", date: "5 septembre 2026", texte: "Une intervention du CREPS aura lieu en salle de reunion.", lien: "", epingle: false }
 ];
+
+const CALENDRIER = {
+  cadets: [
+    { date: "2026-09-26", dateFin: null, nom: "Lamballe", type: "labelA", selection: false },
+    { date: "2026-09-26", dateFin: null, nom: "St Marcel", type: "labelA", selection: false },
+    { date: "2026-10-01", dateFin: "2026-10-04", nom: "Multi-frontieres", type: "stage", selection: true },
+    { date: "2026-10-04", dateFin: null, nom: "Bressuire", type: "labelA", selection: false },
+    { date: "2026-10-04", dateFin: null, nom: "Tours", type: "labelA", selection: false },
+    { date: "2026-10-04", dateFin: null, nom: "Contrexeville", type: "labelA", selection: false },
+    { date: "2026-10-10", dateFin: "2026-10-11", nom: "Le Luc", type: "labelA", selection: false },
+    { date: "2026-10-18", dateFin: null, nom: "Ceyrat", type: "excellence", selection: true },
+    { date: "2026-10-18", dateFin: null, nom: "Cormeilles", type: "excellence", selection: false },
+    { date: "2026-10-19", dateFin: "2026-10-21", nom: "Ceyrat", type: "stage", selection: true },
+    { date: "2026-10-26", dateFin: "2026-10-28", nom: "Toussaint", type: "stage", selection: true },
+    { date: "2026-10-31", dateFin: null, nom: "Limoges", type: "excellence", selection: false },
+    { date: "2026-10-31", dateFin: null, nom: "Comite 93", type: "excellence", selection: false },
+    { date: "2026-11-07", dateFin: null, nom: "Comite 27", type: "labelA", selection: false },
+    { date: "2026-11-08", dateFin: null, nom: "Harnes", type: "labelA", selection: true },
+    { date: "2026-11-08", dateFin: null, nom: "St Gregoire", type: "labelA", selection: false },
+    { date: "2026-11-15", dateFin: null, nom: "Kaweni", type: "labelA", selection: false },
+    { date: "2026-11-22", dateFin: null, nom: "Istres", type: "excellence", selection: false },
+    { date: "2026-11-22", dateFin: null, nom: "Nantes", type: "excellence", selection: true },
+    { date: "2026-11-28", dateFin: null, nom: "Bi-dep", type: "champ", selection: false },
+    { date: "2026-12-05", dateFin: null, nom: "Nimes", type: "excellence", selection: false },
+    { date: "2026-12-12", dateFin: null, nom: "Lormont", type: "superexc", selection: true },
+    { date: "2026-12-14", dateFin: "2026-12-16", nom: "Stage Lormont", type: "stage", selection: true },
+    { date: "2026-12-19", dateFin: null, nom: "Beaune", type: "labelA", selection: false },
+    { date: "2026-12-20", dateFin: null, nom: "Chartres", type: "labelA", selection: false },
+    { date: "2027-01-23", dateFin: "2027-01-24", nom: "Bailly", type: "excellence", selection: false },
+    { date: "2027-01-24", dateFin: null, nom: "Cesson", type: "excellence", selection: false },
+    { date: "2027-01-30", dateFin: null, nom: "LGE 1D", type: "champ", selection: false },
+    { date: "2027-02-14", dateFin: null, nom: "Mouilleron", type: "labelA", selection: false },
+    { date: "2027-02-21", dateFin: null, nom: "Bi-dep 2D/3D", type: "champ", selection: false },
+    { date: "2027-02-27", dateFin: "2027-02-28", nom: "St-Denis", type: "labelA", selection: false },
+    { date: "2027-02-28", dateFin: null, nom: "Capesterre", type: "labelA", selection: false },
+    { date: "2027-03-01", dateFin: "2027-03-04", nom: "Prep. CF", type: "stage", selection: true },
+    { date: "2027-03-06", dateFin: "2027-03-07", nom: "CF 1D", type: "champ", selection: false },
+    { date: "2027-04-03", dateFin: null, nom: "LGE par equipe", type: "champ", selection: false },
+    { date: "2027-04-10", dateFin: null, nom: "LGE espoirs", type: "champ", selection: false },
+    { date: "2027-04-11", dateFin: null, nom: "Le Mans", type: "excellence", selection: false },
+    { date: "2027-05-16", dateFin: null, nom: "Comite 92", type: "excellence", selection: false },
+    { date: "2027-05-29", dateFin: "2027-05-30", nom: "CF 2D/3D/Espoirs", type: "champ", selection: false }
+  ],
+  juniors: [
+    { date: "2026-09-27", dateFin: null, nom: "St Marcel", type: "labelA", selection: false },
+    { date: "2026-10-01", dateFin: "2026-10-04", nom: "Multi-frontieres", type: "stage", selection: true },
+    { date: "2026-10-17", dateFin: null, nom: "Ceyrat", type: "excellence", selection: true },
+    { date: "2026-10-17", dateFin: null, nom: "Cormeilles", type: "excellence", selection: false },
+    { date: "2026-10-31", dateFin: null, nom: "Tergnier", type: "excellence", selection: false },
+    { date: "2026-11-07", dateFin: null, nom: "St Gregoire", type: "labelA", selection: false },
+    { date: "2026-11-15", dateFin: null, nom: "Kaweni", type: "labelA", selection: false },
+    { date: "2026-11-21", dateFin: null, nom: "Forges", type: "excellence", selection: true },
+    { date: "2026-11-22", dateFin: null, nom: "Poitiers", type: "excellence", selection: false },
+    { date: "2026-11-28", dateFin: null, nom: "Montech", type: "labelA", selection: false },
+    { date: "2026-12-13", dateFin: null, nom: "Lormont", type: "superexc", selection: true },
+    { date: "2026-12-14", dateFin: "2026-12-16", nom: "Stage Lormont", type: "stage", selection: true },
+    { date: "2027-01-09", dateFin: null, nom: "Bi-dep", type: "champ", selection: false },
+    { date: "2027-01-16", dateFin: null, nom: "Belfort", type: "excellence", selection: false },
+    { date: "2027-01-16", dateFin: null, nom: "Orleans", type: "excellence", selection: false },
+    { date: "2027-02-13", dateFin: null, nom: "LGE 1D", type: "champ", selection: false },
+    { date: "2027-02-14", dateFin: null, nom: "Aix", type: "excellence", selection: false },
+    { date: "2027-02-21", dateFin: null, nom: "Amiens", type: "excellence", selection: true },
+    { date: "2027-03-01", dateFin: "2027-03-04", nom: "Prep. CF", type: "stage", selection: true },
+    { date: "2027-03-27", dateFin: "2027-03-28", nom: "CF 1D", type: "champ", selection: false },
+    { date: "2027-04-10", dateFin: null, nom: "LGE par equipe", type: "champ", selection: false },
+    { date: "2027-05-08", dateFin: null, nom: "La Roche", type: "excellence", selection: false }
+  ]
+};
 </script>
 
 <script>
@@ -410,8 +619,11 @@ const CONVOCATIONS = [
   const weekScroll = document.getElementById('weekScroll');
   const weekLabel = document.getElementById('weekLabel');
   const sessionList = document.getElementById('sessionList');
-  const convocList = document.getElementById('convocList');
+  const infosList = document.getElementById('infosList');
+  const calendrierList = document.getElementById('calendrierList');
+  const calLegend = document.getElementById('calLegend');
   let currentWeek = 0;
+  let currentGroup = 'cadets';
 
   function renderWeekPills(){
     weekScroll.innerHTML = '';
@@ -495,23 +707,87 @@ const CONVOCATIONS = [
     });
   }
 
-  function renderConvocations(){
-    convocList.innerHTML = '';
-    if(!CONVOCATIONS.length){
-      convocList.innerHTML = '<p class="empty">Aucune convocation disponible pour le moment.</p>';
+  const TYPE_LABELS = {
+    labelA: 'Label A',
+    excellence: 'Excellence',
+    superexc: 'Super Excellence',
+    champ: 'Championnat',
+    stage: 'Stage / rassemblement'
+  };
+  const TYPE_COLORS = {
+    labelA: '#1d5fa5',
+    excellence: '#3b8f57',
+    superexc: '#c23b74',
+    champ: '#c23b3b',
+    stage: '#7a5cb0'
+  };
+  const MOIS_FR = ['janv.','fevr.','mars','avr.','mai','juin','juil.','aout','sept.','oct.','nov.','dec.'];
+  const MOIS_FR_LONG = ['Janvier','Fevrier','Mars','Avril','Mai','Juin','Juillet','Aout','Septembre','Octobre','Novembre','Decembre'];
+
+  function renderLegend(){
+    calLegend.innerHTML = Object.keys(TYPE_LABELS).map(function(k){
+      return '<span class="legend-item"><span class="legend-dot" style="background:' + TYPE_COLORS[k] + '"></span>' + TYPE_LABELS[k] + '</span>';
+    }).join('');
+  }
+
+  function renderCalendrier(){
+    calendrierList.innerHTML = '';
+    const events = (CALENDRIER[currentGroup] || []).slice().sort(function(a,b){
+      return a.date < b.date ? -1 : (a.date > b.date ? 1 : 0);
+    });
+    if(!events.length){
+      calendrierList.innerHTML = '<p class="empty">Aucun evenement pour le moment.</p>';
       return;
     }
-    CONVOCATIONS.forEach(c=>{
-      const a = document.createElement('a');
-      a.className = 'convoc';
-      a.href = c.fichier;
-      a.target = '_blank';
-      a.innerHTML = `
-        <div class="ic">PDF</div>
-        <div class="meta"><div class="t">${c.titre}</div><div class="s">${c.date}</div></div>
-        <div class="go">&rsaquo;</div>
+    let lastMonthKey = null;
+    events.forEach(function(ev){
+      const d = new Date(ev.date + 'T00:00:00');
+      const monthKey = d.getFullYear() + '-' + d.getMonth();
+      if(monthKey !== lastMonthKey){
+        const h = document.createElement('div');
+        h.className = 'cal-month';
+        h.textContent = MOIS_FR_LONG[d.getMonth()] + ' ' + d.getFullYear();
+        calendrierList.appendChild(h);
+        lastMonthKey = monthKey;
+      }
+      const card = document.createElement('div');
+      card.className = 'cal-event type-' + ev.type;
+      let dateLabel = d.getDate() + ' ' + MOIS_FR[d.getMonth()];
+      if(ev.dateFin){
+        const d2 = new Date(ev.dateFin + 'T00:00:00');
+        dateLabel = d.getDate() + '-' + d2.getDate() + ' ' + MOIS_FR[d2.getMonth()];
+      }
+      card.innerHTML = `
+        <div class="cal-date"><div class="d">${d.getDate()}</div><div class="m">${MOIS_FR[d.getMonth()]}</div></div>
+        <div class="cal-info">
+          <div class="cal-nom">${ev.nom}${ev.selection ? '<span class="cal-star">&#9733; Selection LGE</span>' : ''}</div>
+          <div class="cal-type">${TYPE_LABELS[ev.type] || ev.type}${ev.dateFin ? ' &middot; ' + dateLabel : ''}</div>
+        </div>
       `;
-      convocList.appendChild(a);
+      calendrierList.appendChild(card);
+    });
+  }
+
+  function renderInfos(){
+    infosList.innerHTML = '';
+    if(!INFOS.length){
+      infosList.innerHTML = '<p class="empty">Aucune information pour le moment.</p>';
+      return;
+    }
+    const sorted = INFOS.slice().sort((a,b)=> (b.epingle?1:0) - (a.epingle?1:0));
+    sorted.forEach(info=>{
+      const card = document.createElement('div');
+      card.className = 'info-card' + (info.epingle ? ' pinned' : '');
+      card.innerHTML = `
+        <div class="info-top">
+          ${info.epingle ? '<span class="info-pin">&#9733; Important</span>' : ''}
+          <span class="info-date">${info.date || ''}</span>
+        </div>
+        <div class="info-titre">${info.titre || ''}</div>
+        ${info.texte ? `<div class="info-texte">${info.texte}</div>` : ''}
+        ${info.lien ? `<a class="info-lien" href="${info.lien}" target="_blank">Voir le document</a>` : ''}
+      `;
+      infosList.appendChild(card);
     });
   }
 
@@ -526,12 +802,24 @@ const CONVOCATIONS = [
       this.classList.add('active');
       const view = this.getAttribute('data-view');
       document.getElementById('view-seances').style.display = view==='seances' ? 'block':'none';
-      document.getElementById('view-convoc').style.display = view==='convoc' ? 'block':'none';
+      document.getElementById('view-calendrier').style.display = view==='calendrier' ? 'block':'none';
+      document.getElementById('view-infos').style.display = view==='infos' ? 'block':'none';
+    });
+  });
+
+  document.querySelectorAll('.group-btn').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      document.querySelectorAll('.group-btn').forEach(function(b){ b.classList.remove('active'); });
+      this.classList.add('active');
+      currentGroup = this.getAttribute('data-group');
+      renderCalendrier();
     });
   });
 
   render();
-  renderConvocations();
+  renderLegend();
+  renderCalendrier();
+  renderInfos();
 
   if('serviceWorker' in navigator){
     window.addEventListener('load', function(){

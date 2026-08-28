@@ -188,6 +188,7 @@ main{padding:16px 14px 8px;max-width:520px;margin:0 auto;}
 .badge.muscu{background:var(--orange-2);color:var(--orange);}
 .badge.piste{background:#dce8f3;color:var(--piste);}
 .badge.judo{background:#f0e9d8;color:var(--judo);}
+.badge.autre{background:#e5e2d8;color:#5c5645;}
 .session-info .titre{
   font-size:15px;
   font-weight:600;
@@ -440,6 +441,48 @@ main{padding:16px 14px 8px;max-width:520px;margin:0 auto;}
   margin-top:2px;
 }
 
+.schema-btn{
+  display:block;
+  width:100%;
+  background:var(--card);
+  border:1px solid var(--marine);
+  color:var(--marine);
+  font-weight:600;
+  font-size:13.5px;
+  padding:11px;
+  border-radius:10px;
+  margin-bottom:14px;
+}
+.lightbox{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(11,42,67,0.96);
+  z-index:100;
+  padding:20px 14px;
+  overflow:auto;
+}
+.lightbox.open{display:flex;align-items:flex-start;justify-content:center;}
+.lightbox img{
+  max-width:100%;
+  width:100%;
+  height:auto;
+  border-radius:10px;
+  margin-top:40px;
+}
+.lightbox-close{
+  position:fixed;
+  top:14px;right:14px;
+  width:38px;height:38px;
+  border-radius:50%;
+  border:none;
+  background:rgba(255,255,255,0.15);
+  color:#fff;
+  font-size:22px;
+  line-height:1;
+  z-index:101;
+}
+
 footer{
   text-align:center;
   font-size:11.5px;
@@ -474,9 +517,15 @@ footer{
       <button class="group-btn active" data-group="cadets">Cadets</button>
       <button class="group-btn" data-group="juniors">Juniors</button>
     </div>
+    <button class="schema-btn" id="schemaBtn">Voir le schema de qualification</button>
     <div class="calendrier-legend" id="calLegend"></div>
     <div id="calendrierList"></div>
   </section>
+
+  <div class="lightbox" id="lightbox">
+    <button class="lightbox-close" id="lightboxClose">&times;</button>
+    <img id="lightboxImg" src="" alt="Schema de qualification">
+  </div>
 
   <section id="view-infos" style="display:none;">
     <div id="infosList"></div>
@@ -640,6 +689,7 @@ const CALENDRIER = {
     if(type==='muscu') return 'Musculation';
     if(type==='piste') return 'PPG piste';
     if(type==='judo') return 'Judo';
+    if(type==='autre') return 'Autre';
     return type;
   }
 
@@ -814,6 +864,20 @@ const CALENDRIER = {
       currentGroup = this.getAttribute('data-group');
       renderCalendrier();
     });
+  });
+
+  const SCHEMAS = { cadets: 'schema-cadets.jpg', juniors: 'schema-juniors.jpg' };
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightboxImg');
+  document.getElementById('schemaBtn').addEventListener('click', function(){
+    lightboxImg.src = SCHEMAS[currentGroup];
+    lightbox.classList.add('open');
+  });
+  document.getElementById('lightboxClose').addEventListener('click', function(){
+    lightbox.classList.remove('open');
+  });
+  lightbox.addEventListener('click', function(e){
+    if(e.target === lightbox) lightbox.classList.remove('open');
   });
 
   render();

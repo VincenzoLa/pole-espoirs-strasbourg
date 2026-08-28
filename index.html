@@ -550,115 +550,496 @@ footer{
 
 const SEMAINES = [
   {
-    label: "Semaine du 25 août",
-    seances: [
+    "label": "Stage cohésion pré-rentrée ",
+    "seances": [
       {
-        jourAbrev: "Mer",
-        jourNum: "27",
-        type: "muscu",
-        titre: "Bas du corps — force",
-        heure: "17h30 – 19h00",
-        intro: "Bloc force générale, travail bilatéral. Échauffement articulaire 10 min avant de commencer.",
-        exercices: [
-          { nom: "Squat gobelet", charge: "4 x 8", consigne: "Descente contrôlée, talons au sol.", video: "" },
-          { nom: "Fentes marchées", charge: "3 x 10 / jambe", consigne: "Genou avant aligné avec la cheville.", video: "" },
-          { nom: "Gainage planche", charge: "3 x 40s", consigne: "Bassin neutre, ne pas creuser le dos.", video: "" }
-        ]
+        "jourAbrev": "Sam",
+        "jourNum": "29",
+        "type": "piste",
+        "titre": "Footing",
+        "heure": "16h30-17h30",
+        "intro": "",
+        "exercices": []
       },
       {
-        jourAbrev: "Jeu",
-        jourNum: "28",
-        type: "piste",
-        titre: "PPG piste — vitesse / gainage",
-        heure: "18h00 – 19h30",
-        intro: "Séance PPG axée sur la vitesse de déplacement et le gainage dynamique.",
-        exercices: [
-          { nom: "Sprints 20m", charge: "6 répétitions", consigne: "Récupération complète entre chaque.", video: "" }
-        ]
+        "jourAbrev": "Dim",
+        "jourNum": "30",
+        "type": "autre",
+        "titre": "Randonée",
+        "heure": "07h30-18h00",
+        "intro": "",
+        "exercices": []
       },
       {
-        jourAbrev: "Sam",
-        jourNum: "30",
-        type: "judo",
-        titre: "Kumikata et déséquilibres",
-        heure: "10h00 – 12h00",
-        intro: "Travail spécifique de la saisie et des déséquilibres avant projection.",
-        exercices: []
+        "jourAbrev": "Lun",
+        "jourNum": "31",
+        "type": "judo",
+        "titre": "",
+        "heure": "09h30-11h30",
+        "intro": "",
+        "exercices": []
+      },
+      {
+        "jourAbrev": "Lun",
+        "jourNum": "31",
+        "type": "judo",
+        "titre": "",
+        "heure": "16h00-18h00",
+        "intro": "",
+        "exercices": []
       }
     ]
   }
 ];
 
 const INFOS = [
-  // Exemple — décommenter et adapter :
-  // { titre: "Intervention prevention harcelement", date: "5 septembre 2026", texte: "Une intervention du CREPS aura lieu en salle de reunion.", lien: "", epingle: false }
+  {
+    "titre": "Rentrée scolaire Lycéens",
+    "date": "1 septembre 2026",
+    "texte": "Secondes : 08h15-12h00\nPremières : 09h30-11h30\nTerminales : 10h30-12h15\nPuis 13h20 selon emploi de temps",
+    "lien": "",
+    "epingle": false
+  },
+  {
+    "titre": "Rentrée scolaire Collégiens",
+    "date": "1 septembre 2026",
+    "texte": "3ème : 10h00-12h00\nPuis début des cours le jeudi 03 septembre selon emploi du temps ",
+    "lien": "",
+    "epingle": false
+  }
 ];
 
 const CALENDRIER = {
-  cadets: [
-    { date: "2026-09-26", dateFin: null, nom: "Lamballe", type: "labelA", selection: false },
-    { date: "2026-09-26", dateFin: null, nom: "St Marcel", type: "labelA", selection: false },
-    { date: "2026-10-01", dateFin: "2026-10-04", nom: "Multi-frontieres", type: "stage", selection: true },
-    { date: "2026-10-04", dateFin: null, nom: "Bressuire", type: "labelA", selection: false },
-    { date: "2026-10-04", dateFin: null, nom: "Tours", type: "labelA", selection: false },
-    { date: "2026-10-04", dateFin: null, nom: "Contrexeville", type: "labelA", selection: false },
-    { date: "2026-10-10", dateFin: "2026-10-11", nom: "Le Luc", type: "labelA", selection: false },
-    { date: "2026-10-18", dateFin: null, nom: "Ceyrat", type: "excellence", selection: true },
-    { date: "2026-10-18", dateFin: null, nom: "Cormeilles", type: "excellence", selection: false },
-    { date: "2026-10-19", dateFin: "2026-10-21", nom: "Ceyrat", type: "stage", selection: true },
-    { date: "2026-10-26", dateFin: "2026-10-28", nom: "Toussaint", type: "stage", selection: true },
-    { date: "2026-10-31", dateFin: null, nom: "Limoges", type: "excellence", selection: false },
-    { date: "2026-10-31", dateFin: null, nom: "Comite 93", type: "excellence", selection: false },
-    { date: "2026-11-07", dateFin: null, nom: "Comite 27", type: "labelA", selection: false },
-    { date: "2026-11-08", dateFin: null, nom: "Harnes", type: "labelA", selection: true },
-    { date: "2026-11-08", dateFin: null, nom: "St Gregoire", type: "labelA", selection: false },
-    { date: "2026-11-15", dateFin: null, nom: "Kaweni", type: "labelA", selection: false },
-    { date: "2026-11-22", dateFin: null, nom: "Istres", type: "excellence", selection: false },
-    { date: "2026-11-22", dateFin: null, nom: "Nantes", type: "excellence", selection: true },
-    { date: "2026-11-28", dateFin: null, nom: "Bi-dep", type: "champ", selection: false },
-    { date: "2026-12-05", dateFin: null, nom: "Nimes", type: "excellence", selection: false },
-    { date: "2026-12-12", dateFin: null, nom: "Lormont", type: "superexc", selection: true },
-    { date: "2026-12-14", dateFin: "2026-12-16", nom: "Stage Lormont", type: "stage", selection: true },
-    { date: "2026-12-19", dateFin: null, nom: "Beaune", type: "labelA", selection: false },
-    { date: "2026-12-20", dateFin: null, nom: "Chartres", type: "labelA", selection: false },
-    { date: "2027-01-23", dateFin: "2027-01-24", nom: "Bailly", type: "excellence", selection: false },
-    { date: "2027-01-24", dateFin: null, nom: "Cesson", type: "excellence", selection: false },
-    { date: "2027-01-30", dateFin: null, nom: "LGE 1D", type: "champ", selection: false },
-    { date: "2027-02-14", dateFin: null, nom: "Mouilleron", type: "labelA", selection: false },
-    { date: "2027-02-21", dateFin: null, nom: "Bi-dep 2D/3D", type: "champ", selection: false },
-    { date: "2027-02-27", dateFin: "2027-02-28", nom: "St-Denis", type: "labelA", selection: false },
-    { date: "2027-02-28", dateFin: null, nom: "Capesterre", type: "labelA", selection: false },
-    { date: "2027-03-01", dateFin: "2027-03-04", nom: "Prep. CF", type: "stage", selection: true },
-    { date: "2027-03-06", dateFin: "2027-03-07", nom: "CF 1D", type: "champ", selection: false },
-    { date: "2027-04-03", dateFin: null, nom: "LGE par equipe", type: "champ", selection: false },
-    { date: "2027-04-10", dateFin: null, nom: "LGE espoirs", type: "champ", selection: false },
-    { date: "2027-04-11", dateFin: null, nom: "Le Mans", type: "excellence", selection: false },
-    { date: "2027-05-16", dateFin: null, nom: "Comite 92", type: "excellence", selection: false },
-    { date: "2027-05-29", dateFin: "2027-05-30", nom: "CF 2D/3D/Espoirs", type: "champ", selection: false }
+  "cadets": [
+    {
+      "date": "2026-09-26",
+      "dateFin": null,
+      "nom": "Lamballe",
+      "type": "labelA",
+      "selection": false
+    },
+    {
+      "date": "2026-09-26",
+      "dateFin": null,
+      "nom": "St Marcel",
+      "type": "labelA",
+      "selection": false
+    },
+    {
+      "date": "2026-10-01",
+      "dateFin": "2026-10-04",
+      "nom": "Multi-frontieres",
+      "type": "stage",
+      "selection": true
+    },
+    {
+      "date": "2026-10-04",
+      "dateFin": null,
+      "nom": "Bressuire",
+      "type": "labelA",
+      "selection": false
+    },
+    {
+      "date": "2026-10-04",
+      "dateFin": null,
+      "nom": "Tours",
+      "type": "labelA",
+      "selection": false
+    },
+    {
+      "date": "2026-10-04",
+      "dateFin": null,
+      "nom": "Contrexeville",
+      "type": "labelA",
+      "selection": false
+    },
+    {
+      "date": "2026-10-10",
+      "dateFin": "2026-10-11",
+      "nom": "Le Luc",
+      "type": "labelA",
+      "selection": false
+    },
+    {
+      "date": "2026-10-18",
+      "dateFin": null,
+      "nom": "Ceyrat",
+      "type": "excellence",
+      "selection": true
+    },
+    {
+      "date": "2026-10-18",
+      "dateFin": null,
+      "nom": "Cormeilles",
+      "type": "excellence",
+      "selection": false
+    },
+    {
+      "date": "2026-10-19",
+      "dateFin": "2026-10-21",
+      "nom": "Ceyrat",
+      "type": "stage",
+      "selection": true
+    },
+    {
+      "date": "2026-10-26",
+      "dateFin": "2026-10-28",
+      "nom": "Toussaint",
+      "type": "stage",
+      "selection": true
+    },
+    {
+      "date": "2026-10-31",
+      "dateFin": null,
+      "nom": "Limoges",
+      "type": "excellence",
+      "selection": false
+    },
+    {
+      "date": "2026-10-31",
+      "dateFin": null,
+      "nom": "Comite 93",
+      "type": "excellence",
+      "selection": false
+    },
+    {
+      "date": "2026-11-07",
+      "dateFin": null,
+      "nom": "Comite 27",
+      "type": "labelA",
+      "selection": false
+    },
+    {
+      "date": "2026-11-08",
+      "dateFin": null,
+      "nom": "Harnes",
+      "type": "labelA",
+      "selection": true
+    },
+    {
+      "date": "2026-11-08",
+      "dateFin": null,
+      "nom": "St Gregoire",
+      "type": "labelA",
+      "selection": false
+    },
+    {
+      "date": "2026-11-15",
+      "dateFin": null,
+      "nom": "Kaweni",
+      "type": "labelA",
+      "selection": false
+    },
+    {
+      "date": "2026-11-22",
+      "dateFin": null,
+      "nom": "Istres",
+      "type": "excellence",
+      "selection": false
+    },
+    {
+      "date": "2026-11-22",
+      "dateFin": null,
+      "nom": "Nantes",
+      "type": "excellence",
+      "selection": true
+    },
+    {
+      "date": "2026-11-28",
+      "dateFin": null,
+      "nom": "Bi-dep",
+      "type": "champ",
+      "selection": false
+    },
+    {
+      "date": "2026-12-05",
+      "dateFin": null,
+      "nom": "Nimes",
+      "type": "excellence",
+      "selection": false
+    },
+    {
+      "date": "2026-12-12",
+      "dateFin": null,
+      "nom": "Lormont",
+      "type": "superexc",
+      "selection": true
+    },
+    {
+      "date": "2026-12-14",
+      "dateFin": "2026-12-16",
+      "nom": "Stage Lormont",
+      "type": "stage",
+      "selection": true
+    },
+    {
+      "date": "2026-12-19",
+      "dateFin": null,
+      "nom": "Beaune",
+      "type": "labelA",
+      "selection": false
+    },
+    {
+      "date": "2026-12-20",
+      "dateFin": null,
+      "nom": "Chartres",
+      "type": "labelA",
+      "selection": false
+    },
+    {
+      "date": "2027-01-23",
+      "dateFin": "2027-01-24",
+      "nom": "Bailly",
+      "type": "excellence",
+      "selection": false
+    },
+    {
+      "date": "2027-01-24",
+      "dateFin": null,
+      "nom": "Cesson",
+      "type": "excellence",
+      "selection": false
+    },
+    {
+      "date": "2027-01-30",
+      "dateFin": null,
+      "nom": "LGE 1D",
+      "type": "champ",
+      "selection": false
+    },
+    {
+      "date": "2027-02-14",
+      "dateFin": null,
+      "nom": "Mouilleron",
+      "type": "labelA",
+      "selection": false
+    },
+    {
+      "date": "2027-02-21",
+      "dateFin": null,
+      "nom": "Bi-dep 2D/3D",
+      "type": "champ",
+      "selection": false
+    },
+    {
+      "date": "2027-02-27",
+      "dateFin": "2027-02-28",
+      "nom": "St-Denis",
+      "type": "labelA",
+      "selection": false
+    },
+    {
+      "date": "2027-02-28",
+      "dateFin": null,
+      "nom": "Capesterre",
+      "type": "labelA",
+      "selection": false
+    },
+    {
+      "date": "2027-03-01",
+      "dateFin": "2027-03-04",
+      "nom": "Prep. CF",
+      "type": "stage",
+      "selection": true
+    },
+    {
+      "date": "2027-03-06",
+      "dateFin": "2027-03-07",
+      "nom": "CF 1D",
+      "type": "champ",
+      "selection": false
+    },
+    {
+      "date": "2027-04-03",
+      "dateFin": null,
+      "nom": "LGE par equipe",
+      "type": "champ",
+      "selection": false
+    },
+    {
+      "date": "2027-04-10",
+      "dateFin": null,
+      "nom": "LGE espoirs",
+      "type": "champ",
+      "selection": false
+    },
+    {
+      "date": "2027-04-11",
+      "dateFin": null,
+      "nom": "Le Mans",
+      "type": "excellence",
+      "selection": false
+    },
+    {
+      "date": "2027-05-16",
+      "dateFin": null,
+      "nom": "Comite 92",
+      "type": "excellence",
+      "selection": false
+    },
+    {
+      "date": "2027-05-29",
+      "dateFin": "2027-05-30",
+      "nom": "CF 2D/3D/Espoirs",
+      "type": "champ",
+      "selection": false
+    }
   ],
-  juniors: [
-    { date: "2026-09-27", dateFin: null, nom: "St Marcel", type: "labelA", selection: false },
-    { date: "2026-10-01", dateFin: "2026-10-04", nom: "Multi-frontieres", type: "stage", selection: true },
-    { date: "2026-10-17", dateFin: null, nom: "Ceyrat", type: "excellence", selection: true },
-    { date: "2026-10-17", dateFin: null, nom: "Cormeilles", type: "excellence", selection: false },
-    { date: "2026-10-31", dateFin: null, nom: "Tergnier", type: "excellence", selection: false },
-    { date: "2026-11-07", dateFin: null, nom: "St Gregoire", type: "labelA", selection: false },
-    { date: "2026-11-15", dateFin: null, nom: "Kaweni", type: "labelA", selection: false },
-    { date: "2026-11-21", dateFin: null, nom: "Forges", type: "excellence", selection: true },
-    { date: "2026-11-22", dateFin: null, nom: "Poitiers", type: "excellence", selection: false },
-    { date: "2026-11-28", dateFin: null, nom: "Montech", type: "labelA", selection: false },
-    { date: "2026-12-13", dateFin: null, nom: "Lormont", type: "superexc", selection: true },
-    { date: "2026-12-14", dateFin: "2026-12-16", nom: "Stage Lormont", type: "stage", selection: true },
-    { date: "2027-01-09", dateFin: null, nom: "Bi-dep", type: "champ", selection: false },
-    { date: "2027-01-16", dateFin: null, nom: "Belfort", type: "excellence", selection: false },
-    { date: "2027-01-16", dateFin: null, nom: "Orleans", type: "excellence", selection: false },
-    { date: "2027-02-13", dateFin: null, nom: "LGE 1D", type: "champ", selection: false },
-    { date: "2027-02-14", dateFin: null, nom: "Aix", type: "excellence", selection: false },
-    { date: "2027-02-21", dateFin: null, nom: "Amiens", type: "excellence", selection: true },
-    { date: "2027-03-01", dateFin: "2027-03-04", nom: "Prep. CF", type: "stage", selection: true },
-    { date: "2027-03-27", dateFin: "2027-03-28", nom: "CF 1D", type: "champ", selection: false },
-    { date: "2027-04-10", dateFin: null, nom: "LGE par equipe", type: "champ", selection: false },
-    { date: "2027-05-08", dateFin: null, nom: "La Roche", type: "excellence", selection: false }
+  "juniors": [
+    {
+      "date": "2026-09-27",
+      "dateFin": null,
+      "nom": "St Marcel",
+      "type": "labelA",
+      "selection": false
+    },
+    {
+      "date": "2026-10-01",
+      "dateFin": "2026-10-04",
+      "nom": "Multi-frontieres",
+      "type": "stage",
+      "selection": true
+    },
+    {
+      "date": "2026-10-17",
+      "dateFin": null,
+      "nom": "Ceyrat",
+      "type": "excellence",
+      "selection": true
+    },
+    {
+      "date": "2026-10-17",
+      "dateFin": null,
+      "nom": "Cormeilles",
+      "type": "excellence",
+      "selection": false
+    },
+    {
+      "date": "2026-10-31",
+      "dateFin": null,
+      "nom": "Tergnier",
+      "type": "excellence",
+      "selection": false
+    },
+    {
+      "date": "2026-11-07",
+      "dateFin": null,
+      "nom": "St Gregoire",
+      "type": "labelA",
+      "selection": false
+    },
+    {
+      "date": "2026-11-15",
+      "dateFin": null,
+      "nom": "Kaweni",
+      "type": "labelA",
+      "selection": false
+    },
+    {
+      "date": "2026-11-21",
+      "dateFin": null,
+      "nom": "Forges",
+      "type": "excellence",
+      "selection": true
+    },
+    {
+      "date": "2026-11-22",
+      "dateFin": null,
+      "nom": "Poitiers",
+      "type": "excellence",
+      "selection": false
+    },
+    {
+      "date": "2026-11-28",
+      "dateFin": null,
+      "nom": "Montech",
+      "type": "labelA",
+      "selection": false
+    },
+    {
+      "date": "2026-12-13",
+      "dateFin": null,
+      "nom": "Lormont",
+      "type": "superexc",
+      "selection": true
+    },
+    {
+      "date": "2026-12-14",
+      "dateFin": "2026-12-16",
+      "nom": "Stage Lormont",
+      "type": "stage",
+      "selection": true
+    },
+    {
+      "date": "2027-01-09",
+      "dateFin": null,
+      "nom": "Bi-dep",
+      "type": "champ",
+      "selection": false
+    },
+    {
+      "date": "2027-01-16",
+      "dateFin": null,
+      "nom": "Belfort",
+      "type": "excellence",
+      "selection": false
+    },
+    {
+      "date": "2027-01-16",
+      "dateFin": null,
+      "nom": "Orleans",
+      "type": "excellence",
+      "selection": false
+    },
+    {
+      "date": "2027-02-13",
+      "dateFin": null,
+      "nom": "LGE 1D",
+      "type": "champ",
+      "selection": false
+    },
+    {
+      "date": "2027-02-14",
+      "dateFin": null,
+      "nom": "Aix",
+      "type": "excellence",
+      "selection": false
+    },
+    {
+      "date": "2027-02-21",
+      "dateFin": null,
+      "nom": "Amiens",
+      "type": "excellence",
+      "selection": true
+    },
+    {
+      "date": "2027-03-01",
+      "dateFin": "2027-03-04",
+      "nom": "Prep. CF",
+      "type": "stage",
+      "selection": true
+    },
+    {
+      "date": "2027-03-27",
+      "dateFin": "2027-03-28",
+      "nom": "CF 1D",
+      "type": "champ",
+      "selection": false
+    },
+    {
+      "date": "2027-04-10",
+      "dateFin": null,
+      "nom": "LGE par equipe",
+      "type": "champ",
+      "selection": false
+    },
+    {
+      "date": "2027-05-08",
+      "dateFin": null,
+      "nom": "La Roche",
+      "type": "excellence",
+      "selection": false
+    }
   ]
 };
 </script>

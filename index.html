@@ -219,6 +219,7 @@ main{padding:16px 14px 8px;max-width:520px;margin:0 auto;}
   color:var(--text-mute);
   padding:14px 0 4px;
   line-height:1.5;
+  white-space:pre-line;
 }
 
 /* Exercise rows */
@@ -245,6 +246,7 @@ main{padding:16px 14px 8px;max-width:520px;margin:0 auto;}
   color:var(--text-mute);
   margin-top:3px;
   line-height:1.4;
+  white-space:pre-line;
 }
 .exo-video{
   margin-top:8px;
@@ -2066,12 +2068,58 @@ const CALENDRIER = {
   const infosList = document.getElementById('infosList');
   const calendrierList = document.getElementById('calendrierList');
   const calLegend = document.getElementById('calLegend');
-  let currentWeek = 0;
   let currentGroup = 'cadets';
+
+  // --- Ordre des semaines : semaine en cours d'abord, puis les suivantes,
+  // puis les semaines passees (la plus recente en premier).
+  // Les dates sont lues dans le libelle (ex. "S46 / 09 nov au 15 nov").
+  const MOIS_LUS = ['janv','fevr','mars','avr','mai','juin','juil','aout','sep','oct','nov','dec'];
+  function lireMois(txt){
+    const t = txt.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');
+    for(let i=0;i<MOIS_LUS.length;i++){ if(t.indexOf(MOIS_LUS[i])===0) return i; }
+    if(t.indexOf('jan')===0) return 0;
+    if(t.indexOf('fev')===0) return 1;
+    return -1;
+  }
+  function lireDate(jour, moisTxt, annee){
+    let m = /^\d+$/.test(moisTxt) ? parseInt(moisTxt,10)-1 : lireMois(moisTxt);
+    if(m<0 || m>11) return null;
+    if(!annee) annee = (m>=7) ? 2026 : 2027;
+    return new Date(annee, m, parseInt(jour,10));
+  }
+  function plageSemaine(label){
+    const re = /(\d{1,2})[\s.\/]+([A-Za-z\u00C0-\u017F]+\.?|\d{1,2})(?:[.\/](\d{2,4}))?/g;
+    label = label.replace(/^\s*S\d+\s*[\/\-\u2013:]?\s*/i, '');
+    const out = []; let m;
+    while((m = re.exec(label)) && out.length<2){
+      let an = m[3] ? parseInt(m[3],10) : 0;
+      if(an && an<100) an += 2000;
+      const d = lireDate(m[1], m[2].replace('.',''), an);
+      if(d) out.push(d);
+    }
+    if(out.length<2) return null;
+    out[1] = new Date(out[1].getFullYear(), out[1].getMonth(), out[1].getDate(), 23, 59, 59);
+    return out;
+  }
+  function ordreSemaines(){
+    const now = new Date();
+    const items = SEMAINES.map(function(s,i){ return { i:i, p:plageSemaine(s.label||'') }; });
+    const datees = items.filter(function(x){ return x.p; });
+    const sans = items.filter(function(x){ return !x.p; });
+    const futur = datees.filter(function(x){ return x.p[0] > now; })
+                        .sort(function(a,b){ return a.p[0]-b.p[0]; });
+    const passe = datees.filter(function(x){ return x.p[0] <= now; })
+                        .sort(function(a,b){ return b.p[0]-a.p[0]; });
+    // passe[0] = semaine en cours (ou la derniere passee si aucune n'est en cours)
+    return passe.slice(0,1).concat(futur, passe.slice(1), sans).map(function(x){ return x.i; });
+  }
+  const ORDRE = ordreSemaines();
+  let currentWeek = ORDRE.length ? ORDRE[0] : 0;
 
   function renderWeekPills(){
     weekScroll.innerHTML = '';
-    SEMAINES.forEach((s,i)=>{
+    ORDRE.forEach(function(i){
+      const s = SEMAINES[i];
       const b = document.createElement('button');
       b.className = 'week-pill' + (i===currentWeek?' active':'');
       b.textContent = s.label;

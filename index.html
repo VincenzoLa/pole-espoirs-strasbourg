@@ -2168,17 +2168,19 @@ const CALENDRIER = {
   function ordreSemaines(){
     const now = new Date();
     const items = SEMAINES.map(function(s,i){ return { i:i, p:plageSemaine(s.label||'') }; });
-    const datees = items.filter(function(x){ return x.p; });
+    const datees = items.filter(function(x){ return x.p; })
+                        .sort(function(a,b){ return b.p[0]-a.p[0]; });   // plus recente en premier
     const sans = items.filter(function(x){ return !x.p; });
-    const futur = datees.filter(function(x){ return x.p[0] > now; })
-                        .sort(function(a,b){ return a.p[0]-b.p[0]; });
-    const passe = datees.filter(function(x){ return x.p[0] <= now; })
-                        .sort(function(a,b){ return b.p[0]-a.p[0]; });
-    // passe[0] = semaine en cours (ou la derniere passee si aucune n'est en cours)
-    return passe.slice(0,1).concat(futur, passe.slice(1), sans).map(function(x){ return x.i; });
+    // Semaine ouverte par defaut : celle en cours, sinon la derniere passee, sinon la prochaine
+    let cur = datees.find(function(x){ return x.p[0] <= now && now <= x.p[1]; });
+    if(!cur) cur = datees.find(function(x){ return x.p[0] <= now; });
+    if(!cur && datees.length) cur = datees[datees.length-1];
+    return { ordre: datees.concat(sans).map(function(x){ return x.i; }),
+             courante: cur ? cur.i : (sans.length ? sans[0].i : 0) };
   }
-  const ORDRE = ordreSemaines();
-  let currentWeek = ORDRE.length ? ORDRE[0] : 0;
+  const ORDRE_INFO = ordreSemaines();
+  const ORDRE = ORDRE_INFO.ordre;
+  let currentWeek = ORDRE.length ? ORDRE_INFO.courante : 0;
 
   function renderWeekPills(){
     weekScroll.innerHTML = '';
@@ -2190,6 +2192,12 @@ const CALENDRIER = {
       b.onclick = ()=>{ currentWeek = i; render(); };
       weekScroll.appendChild(b);
     });
+    const act = weekScroll.querySelector('.active');
+    if(act){
+      const c = weekScroll.getBoundingClientRect(), r = act.getBoundingClientRect();
+      if(r.right > c.right) weekScroll.scrollLeft += (r.right - c.right) + 16;
+      else if(r.left < c.left) weekScroll.scrollLeft -= (c.left - r.left) + 16;
+    }
   }
 
   function badgeLabel(type){
